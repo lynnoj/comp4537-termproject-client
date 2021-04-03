@@ -94,4 +94,6 @@ function comment(id)
 }
 
 function deleteTweet()
-
+{
+    console.log("delete this later");
+}
