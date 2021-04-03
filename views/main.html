@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../public/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tweeter</title>
+</head>
+
+<body onload = "init()">
+
+    <div class="wrapper">
+
+        <!-- Navigation Bar -->
+        <div id="nav-bar">
+
+            <div id="nav-bar-left">
+
+                <div>
+                    <a href="main.html"><img src="../public/images/logo.jpg" alt="Icon"></a>
+                </div>
+
+                <div>
+                    <p>Tweeter</p>
+                </div>
+
+            </div>
+
+            <div id="courses">
+
+                <ul>
+                    <li id="current-link">HOME</li>
+                    <li><a href="">Blank</a></li>
+                    <li><a href="">Empty</a></li>
+                    <li><a href="index.html">Login</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Create Tweet Section -->
+        <div id="create-tweet">
+
+            <div>
+                <h3>Create a Tweet</h3>
+            </div>
+
+            <div>
+                <textarea name="tweet-content" id="create-tweet-content" cols="60" rows="6" placeholder="What's happening?"></textarea>
+            </div>
+
+            <div>
+                <button type="button" onclick="addToDB()">Tweet</button>
+            </div>
+
+        </div>
+
+        <!-- Display Tweet Section -->
+        <div id="display-tweet">
+
+            <h3>Placeholder to show tweets from db</h3>
+
+        </div>
+
+        <script src="js/main.js"></script>
+    </div>
+</body>
+
+</html>
