@@ -1,9 +1,10 @@
 const express = require('express')
 const http = require('http')
 const mysql = require('mysql')
+
 const app = express()
 const router = express.Router();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3001
 const dbCon = mysql.createPool({
     connectionLimit: 10,
     host: "",
@@ -13,14 +14,17 @@ const dbCon = mysql.createPool({
 });
 
 
-app.use(express.static('public'))
-app.use('/css', express.static(__dirname + 'public/css'))
-app.use('/css', express.static(__dirname + 'public/js'))
+app.use(express.static(__dirname + '/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
+})
+
+
+app.get('/4537/termproject/API/V1/admin', (req,res) => {
+  res.sendFile(__dirname + '/views/admin.html')
 })
 
 // not tested yet
