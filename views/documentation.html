@@ -1,0 +1,715 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tweeter API</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>Tweeter API</h1>
+    <div class="app-desc">This is an API for Tweeter</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="jonnylu@live.ca">jonnylu@live.ca</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/jonnylu/tweeter/1.0.0</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#CreateComment">CreateComment</a></h4>
+  <ul>
+  <li><a href="#createcomment"><code><span class="http-method">post</span> /createcomment</code></a></li>
+  </ul>
+  <h4><a href="#CreateTweet">CreateTweet</a></h4>
+  <ul>
+  <li><a href="#createtweet"><code><span class="http-method">post</span> /createtweet</code></a></li>
+  </ul>
+  <h4><a href="#DeletesAComment">DeletesAComment</a></h4>
+  <ul>
+  <li><a href="#deletecomment"><code><span class="http-method">delete</span> /deletecomment</code></a></li>
+  </ul>
+  <h4><a href="#DeletesATweet">DeletesATweet</a></h4>
+  <ul>
+  <li><a href="#deletetweet"><code><span class="http-method">delete</span> /deletetweet</code></a></li>
+  </ul>
+  <h4><a href="#EditComment">EditComment</a></h4>
+  <ul>
+  <li><a href="#editcomment"><code><span class="http-method">put</span> /editcomment</code></a></li>
+  </ul>
+  <h4><a href="#EditTweet">EditTweet</a></h4>
+  <ul>
+  <li><a href="#edittweet"><code><span class="http-method">put</span> /edittweet</code></a></li>
+  </ul>
+  <h4><a href="#SessionVariableCheck">SessionVariableCheck</a></h4>
+  <ul>
+  <li><a href="#validsession"><code><span class="http-method">get</span> /validsession</code></a></li>
+  </ul>
+  <h4><a href="#Tweet">Tweet</a></h4>
+  <ul>
+  <li><a href="#loadtweets"><code><span class="http-method">get</span> /loadtweets</code></a></li>
+  </ul>
+  <h4><a href="#UserLogin">UserLogin</a></h4>
+  <ul>
+  <li><a href="#login"><code><span class="http-method">post</span> /login</code></a></li>
+  </ul>
+  <h4><a href="#UserRegistration">UserRegistration</a></h4>
+  <ul>
+  <li><a href="#register"><code><span class="http-method">post</span> /register</code></a></li>
+  </ul>
+
+  <h1><a name="CreateComment">CreateComment</a></h1>
+  <div class="method"><a name="createcomment"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /createcomment</code></pre></div>
+    <div class="method-summary">creates a comment (<span class="nickname">createcomment</span>)</div>
+    <div class="method-notes">creates a comment using the information that is passed in</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">NewCommentInfo <a href="#Comment">Comment</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; New comment information </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Successfully commented
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error - Unable to create comment
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="CreateTweet">CreateTweet</a></h1>
+  <div class="method"><a name="createtweet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /createtweet</code></pre></div>
+    <div class="method-summary">creates a tweet (<span class="nickname">createtweet</span>)</div>
+    <div class="method-notes">creates a tweet using the information that is passed in</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">NewTweetInfo <a href="#Tweet">Tweet</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; New tweet information </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    Successfully tweeted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error - Unable to create tweet
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="DeletesAComment">DeletesAComment</a></h1>
+  <div class="method"><a name="deletecomment"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /deletecomment</code></pre></div>
+    <div class="method-summary">Deletes a comment (<span class="nickname">deletecomment</span>)</div>
+    <div class="method-notes">Deletes an existing comment</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">CommentToDelete <a href="#Comment">Comment</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The comment to delete </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Comment successfully deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error - Unable to delete Comment
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="DeletesATweet">DeletesATweet</a></h1>
+  <div class="method"><a name="deletetweet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /deletetweet</code></pre></div>
+    <div class="method-summary">Deletes a tweet (<span class="nickname">deletetweet</span>)</div>
+    <div class="method-notes">Deletes an existing tweet</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">TweetToDelete <a href="#Tweet">Tweet</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The tweet to delete </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Tweet successfully deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error - Unable to delete tweet
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="EditComment">EditComment</a></h1>
+  <div class="method"><a name="editcomment"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /editcomment</code></pre></div>
+    <div class="method-summary">Edits a comment (<span class="nickname">editcomment</span>)</div>
+    <div class="method-notes">Edits an existing comment</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">UpdatedCommentInfo <a href="#Comment">Comment</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; new information to update the comment </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Comment updated successfully
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error - Unable to edit comment
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="EditTweet">EditTweet</a></h1>
+  <div class="method"><a name="edittweet"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /edittweet</code></pre></div>
+    <div class="method-summary">Edits a tweet (<span class="nickname">edittweet</span>)</div>
+    <div class="method-notes">Edits an existing tweet</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">UpdatedTweetInfo <a href="#Tweet">Tweet</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; new information to update the tweet </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">204</h4>
+    Tweet updated successfully
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error - Unable to edit tweet
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="SessionVariableCheck">SessionVariableCheck</a></h1>
+  <div class="method"><a name="validsession"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /validsession</code></pre></div>
+    <div class="method-summary">Checks the users session variable (<span class="nickname">validsession</span>)</div>
+    <div class="method-notes">Checks the users session variable to see if it is valid or not</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    User session is valid
+        <a href="#Object">Object</a>
+    <h4 class="field-label">400</h4>
+    Invalid user session
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Tweet">Tweet</a></h1>
+  <div class="method"><a name="loadtweets"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /loadtweets</code></pre></div>
+    <div class="method-summary">Grabs tweets from the database (<span class="nickname">loadtweets</span>)</div>
+    <div class="method-notes">Pulls tweets from the database and loads it into the clients page</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully loaded tweets
+        <a href="#Object">Object</a>
+    <h4 class="field-label">400</h4>
+    Error - Unable to load tweets
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="UserLogin">UserLogin</a></h1>
+  <div class="method"><a name="login"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /login</code></pre></div>
+    <div class="method-summary">logs a user into the website (<span class="nickname">login</span>)</div>
+    <div class="method-notes">logs a user into the website</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">UserLoginInfo <a href="#User">User</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; User login information </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    User logged in
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Invalid username or password
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="UserRegistration">UserRegistration</a></h1>
+  <div class="method"><a name="register"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /register</code></pre></div>
+    <div class="method-summary">registers a user (<span class="nickname">register</span>)</div>
+    <div class="method-notes">registers a new user in the database using the given information</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">UserRegistrationInfo <a href="#User">User</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; user registration information </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    You have successfully registered
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error - Invalid input
+        <a href="#"></a>
+    <h4 class="field-label">409</h4>
+    The user already exists
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Comment"><code>Comment</code> - </a></li>
+    <li><a href="#Tweet"><code>Tweet</code> - </a></li>
+    <li><a href="#User"><code>User</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Comment"><code>Comment</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">CommentID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">UserID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">Comment </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Nice program</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Tweet"><code>Tweet</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">TweetID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">UserID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">Content </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: hello world</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="User"><code>User</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">UserID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">FirstName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: John</span></div>
+<div class="param">LastName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: Doe</span></div>
+<div class="param">UserName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: jdoe@gmail.com</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
