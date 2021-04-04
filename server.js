@@ -19,6 +19,10 @@ app.get('/4537/termproject/API/V1/admin', (req,res) => {
   res.sendFile(__dirname + '/views/admin.html')
 })
 
+app.get('/4537/termproject/API/V1/documentation', (req,res) => {
+  res.sendFile(__dirname + '/views/documentation.html')
+})
+
 // not tested yet
 app.get("/api/loadtweets", (req, res) => {
   dbCon.query("SELECT t.content, u.username FROM TWEET t "
