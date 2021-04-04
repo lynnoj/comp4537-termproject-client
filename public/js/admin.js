@@ -6,7 +6,7 @@ function init(){
 }
 function getStats(){
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://comp4537-termproject-api.herokuapp.com/api/getStats',true);
+    xhr.open('GET', 'https://comp4537-termproject-api.herokuapp.com/API/v1/getStats',true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.send();
     xhr.onreadystatechange = function() {
