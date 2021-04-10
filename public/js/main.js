@@ -1,43 +1,45 @@
-let tweetData = [];
+let quackData = [];
 
+// Initializes the page
 function init()
 {
     let xhr = new XMLHttpRequest();
 
     xhr.open("GET", "api/loadtweets", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
     xhr.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
         {
             console.log(JSON.parse(xhr.responseText));
-            tweetData = JSON.parse(xhr.responseText);
-            loadTweets();
+            quackData = JSON.parse(xhr.responseText);
+            loadQuacks();
         }
     }
 }
 
 // Populates the page with tweets and the user's name
-function loadTweets()
+function loadQuacks()
 {
-    for (let i = 0; i < tweetData.length; ++i)
+    for (let i = quackData.length - 1; i >= 0; --i)
     {
-        loadTweetsHelper(i);
+        loadQuacksHelper(i);
     }
 }
 
-function loadTweetsHelper(i)
+// Creates corresponding quack items using info from db
+function loadQuacksHelper(i)
 {
-    let contentDiv = document.getElementById("display-tweet");
-    let tweetDiv = document.createElement("div");
+    let contentDiv = document.getElementById("display-quack");
+    let quackDiv = document.createElement("div");
     let user = document.createElement("p");
-    let tweetContent = document.createElement("p");
+    let quackContent = document.createElement("p");
     let commentButton = document.createElement("button");
     let deleteButton = document.createElement("button");
     const linebreak = document.createElement("br");
 
-    tweetDiv.setAttribute("id", "div" + i);
+    quackDiv.setAttribute("id", "div" + i);
     commentButton.setAttribute("id", "comment" + i);
     commentButton.setAttribute("type", "button");
     commentButton.setAttribute("onclick", "comment(this, this.id)");
@@ -45,55 +47,59 @@ function loadTweetsHelper(i)
     deleteButton.setAttribute("type", "button");
     deleteButton.setAttribute("onclick", "delete(this, this.id)");
 
-    user.textContent = tweetData[i].username;
-    tweetContent.textContent = tweetData[i].content;
+    user.textContent = quackData[i].username;
+    quackContent.textContent = quackData[i].content;
     commentButton.textContent = "comment";
     deleteButton.textContent = "delete";
     
     contentDiv.append(tweetDiv);
-    tweetDiv.append(user);
-    tweetDiv.append(tweetContent);
-    tweetDiv.append(commentButton);
-    tweetDiv.append(deleteButton);
-    tweetDiv.append(linebreak);
-    tweetDiv.append(linebreak);
+    quackDiv.append(user);
+    quackDiv.append(quackContent);
+    quackDiv.append(commentButton);
+    quackDiv.append(deleteButton);
+    quackDiv.append(linebreak);
+    quackDiv.append(linebreak);
 }
 
-function addToDB()
-{
-    let content = document.getElementById("create-tweet-content").value;
-    let xhr = new XMLHttpRequest();
 
-    xhr.open("POST", "api/createtweet", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("status=add"); // "status=add?"
+
+// Quack (QuackID, username, Content)
+// Sends the username and content to the DB
+// DB handles QuackID through mysql auto-increment
+function createQuack()
+{
+    let xhr = new XMLHttpRequest();
+    let username = getUsername();
+    let content = document.getElementById("create-quack-content").value;
+    let jsonString = JSON.stringify({"Username": username, "Content": content});
+
+    xhr.open("POST", "https://comp4537-termproject-api.herokuapp.com/API/V1/createquack", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(jsonString);
     xhr.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            let id = this.responseText;
-            let json = JSON.parse(id);
-            createTweet(json[0].id);
+            console.log(xhr.responseText);
         }
     }
-}
-
-function createTweet(tweetID)
-{
-    let id = dbID;
-    console.log(id);
-
-
 }
 
 function comment(id)
 {
     let xhr = new XMLHttpRequest();
 
+    console.log("yo");
+}
+
+function deleteQuack()
+{
 
 }
 
-function deleteTweet()
+// Sends a GET/POST? request to the DB to get the usersname
+// using the user's session variable
+function getUsername()
 {
-    console.log("delete this later");
+
 }

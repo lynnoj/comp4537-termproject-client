@@ -12,19 +12,23 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
-})
+});
 
 
 app.get('/4537/termproject/API/V1/admin', (req,res) => {
   res.sendFile(__dirname + '/views/admin.html')
-})
+});
+
+app.get('/4537/termproject/API/V1/main', (req,res) => {
+  res.sendFile(__dirname + '/views/main.html')
+});
 
 app.get('/4537/termproject/API/V1/documentation', (req,res) => {
   res.sendFile(__dirname + '/views/documentation.html')
-})
+});
 
 // not tested yet
-app.get("/API/V1/loadtweets", (req, res) => {
+app.get("/API/V1/loadquacks", (req, res) => {
   dbCon.query("SELECT t.content, u.username FROM TWEET t "
     + "INNER JOIN USER u ON t.userID = u.userID;",
     function(err, results, fields) {
@@ -36,6 +40,10 @@ app.get("/API/V1/loadtweets", (req, res) => {
   });
 });
 
+app.post("/API/V1/create-quack", (req, res) =>
+{
+  
+});
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
