@@ -7,6 +7,8 @@ const port = process.env.PORT || 3001
 
 
 app.use(express.static(__dirname + '/public'))
+app.use("/css", express.static(__dirname + "public/css"));
+app.use("/css", express.static(__dirname + "public/js"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
