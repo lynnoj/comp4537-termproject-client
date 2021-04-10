@@ -24,7 +24,7 @@ app.get('/4537/termproject/API/V1/documentation', (req,res) => {
 })
 
 // not tested yet
-app.get("/api/loadtweets", (req, res) => {
+app.get("/API/V1/loadtweets", (req, res) => {
   dbCon.query("SELECT t.content, u.username FROM TWEET t "
     + "INNER JOIN USER u ON t.userID = u.userID;",
     function(err, results, fields) {
