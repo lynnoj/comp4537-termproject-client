@@ -69,9 +69,10 @@ function loadQuacksHelper(i)
 function createQuack()
 {
     let xhr = new XMLHttpRequest();
-    let username = getUsername();
-    let content = document.getElementById("create-quack-content").value;
-    let jsonString = JSON.stringify({"Username": username, "Content": content});
+    // let username = getUsername();
+    // let content = document.getElementById("create-quack-content").value;
+    // let jsonString = JSON.stringify({"username": username, "Content": content});
+    let jsonString = JSON.stringify({"username": "bobby", "content": content});
 
     xhr.open("POST", "https://comp4537-termproject-api.herokuapp.com/API/V1/createquack", true);
     xhr.setRequestHeader("Content-Type", "application/json");
