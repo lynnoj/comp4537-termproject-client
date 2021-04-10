@@ -6,7 +6,7 @@ const router = express.Router();
 const port = process.env.PORT || 3001
 
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('/public'))
 app.use("/css", express.static(__dirname + "public/css"));
 app.use("/css", express.static(__dirname + "public/js"));
 app.use(express.json());
@@ -30,17 +30,17 @@ app.get('/4537/termproject/API/V1/documentation', (req,res) => {
 });
 
 // not tested yet
-app.get("/API/V1/loadquacks", (req, res) => {
-  dbCon.query("SELECT t.content, u.username FROM TWEET t "
-    + "INNER JOIN USER u ON t.userID = u.userID;",
-    function(err, results, fields) {
-    if (err) {
-      console.log("DB error: " + err);
-    } else {
-      return res.json(results);
-    }
-  });
-});
+// app.get("/API/V1/loadquacks", (req, res) => {
+//   dbCon.query("SELECT t.content, u.username FROM TWEET t "
+//     + "INNER JOIN USER u ON t.userID = u.userID;",
+//     function(err, results, fields) {
+//     if (err) {
+//       console.log("DB error: " + err);
+//     } else {
+//       return res.json(results);
+//     }
+//   });
+// });
 
 app.post("/API/V1/create-quack", (req, res) =>
 {
