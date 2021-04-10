@@ -8,14 +8,14 @@ const port = process.env.PORT || 3001
 
 app.use(express.static('/public'))
 app.use("/css", express.static(__dirname + "public/css"));
-app.use("/css", express.static(__dirname + "public/js"));
+app.use("/js", express.static(__dirname + "public/js"));
+app.use("/images", express.static(__dirname + "public/images"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
-
 
 app.get('/4537/termproject/API/V1/admin', (req,res) => {
   res.sendFile(__dirname + '/views/admin.html')
