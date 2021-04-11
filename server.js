@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const app = express()
 const router = express.Router();
 const port = process.env.PORT || 3001
-
+let username;
 
 app.use(express.static('public'))
 app.use("/css", express.static("public/css"));
@@ -17,6 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/', authenticateToken, (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
+});
+
+app.get('/4537/termproject/API/V1/getUserName', authenticateToken, (req, res) => {
+  res.end(username)
 });
 
 app.get('/4537/termproject/API/V1/admin', (req,res) => {
@@ -53,6 +57,7 @@ function authenticateToken(req,res,next) {
     if (err) return res.sendStatus(403);
     req.user = user;
     console.log(user.username);
+    username = user.username
     next();
   });
 }
