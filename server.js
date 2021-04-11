@@ -6,10 +6,10 @@ const router = express.Router();
 const port = process.env.PORT || 3001
 
 
-app.use(express.static('/public'))
-app.use("/css", express.static(__dirname + "public/css"));
-app.use("/js", express.static(__dirname + "public/js"));
-app.use("/images", express.static(__dirname + "public/images"));
+app.use(express.static('public'))
+app.use("/css", express.static("public/css"));
+app.use("/js", express.static("public/js"));
+app.use("/images", express.static("public/images"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -25,26 +25,12 @@ app.get('/4537/termproject/API/V1/main', (req,res) => {
   res.sendFile(__dirname + '/views/main.html')
 });
 
-app.get('/4537/termproject/API/V1/documentation', (req,res) => {
-  res.sendFile(__dirname + '/views/documentation.html')
+app.get('/4537/termproject/API/V1/quack', (req,res) => {
+  res.sendFile(__dirname + '/views/quack.html')
 });
 
-// not tested yet
-// app.get("/API/V1/loadquacks", (req, res) => {
-//   dbCon.query("SELECT t.content, u.username FROM TWEET t "
-//     + "INNER JOIN USER u ON t.userID = u.userID;",
-//     function(err, results, fields) {
-//     if (err) {
-//       console.log("DB error: " + err);
-//     } else {
-//       return res.json(results);
-//     }
-//   });
-// });
-
-app.post("/API/V1/create-quack", (req, res) =>
-{
-  
+app.get('/4537/termproject/API/V1/documentation', (req,res) => {
+  res.sendFile(__dirname + '/views/documentation.html')
 });
 
 app.listen(port, () => {
