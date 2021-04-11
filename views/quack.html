@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/quacker.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quacker</title>
+</head>
+
+<body onload="init()">
+    <div class="wrapper">
+        <div class="header">
+            <div>
+                <button type="button" onclick="back()">Back</button>
+            </div>
+            <div>
+                <h3>Quack</h3>
+            </div>
+        </div>
+
+        <div id="quack-section">
+
+        </div>
+
+        <div id="comment-section">
+            <div>
+                <textarea name="comment-input" id="commentArea" cols="60" 
+                  rows="6" placeholder="Add a comment..." maxlength="255"></textarea>
+            </div>
+
+            <div>
+                <button type="button" onclick="createComment()">Comment</button>
+            </div>
+
+        </div>
+    </div>
+    <script src="/js/quack.js"></script>
+</body>
+
+</html>

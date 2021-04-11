@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../public/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tweeter</title>
+    <title>Quacker</title>
 </head>
 
-<body onload = "init()">
+<body>
 
     <div class="wrapper">
 
@@ -18,11 +18,11 @@
             <div id="nav-bar-left">
 
                 <div>
-                    <a href="main.html"><img src="../public/images/logo.jpg" alt="Icon"></a>
+                    <a href="main.html"><img src="/images/logo.jpg" alt="Icon"></a>
                 </div>
 
                 <div>
-                    <p>Tweeter</p>
+                    <p>Quacker</p>
                 </div>
 
             </div>
@@ -33,38 +33,41 @@
                     <li id="current-link">HOME</li>
                     <li><a href="">Blank</a></li>
                     <li><a href="">Empty</a></li>
-                    <li><a href="index.html">Login</a></li>
+                    <li><a href="/index.html">Login</a></li>
                 </ul>
 
             </div>
 
         </div>
 
-        <!-- Create Tweet Section -->
-        <div id="create-tweet">
+        <!-- Create Quack Section -->
+        <div id="create-quack">
 
             <div>
-                <h3>Create a Tweet</h3>
+                <h3>Create a quack</h3>
             </div>
 
             <div>
-                <textarea name="tweet-content" id="create-tweet-content" cols="60" rows="6" placeholder="What's happening?"></textarea>
+                <textarea name="quack-content" id="create-quack-content" 
+                    cols="60" rows="6" placeholder="What's happening?" maxlength="255"></textarea>
             </div>
 
             <div>
-                <button type="button" onclick="addToDB()">Tweet</button>
+                <button type="button" onclick="createQuack()">Quack</button>
             </div>
 
         </div>
 
         <!-- Display Tweet Section -->
-        <div id="display-tweet">
+        <div id="display-quack">
 
-            <h3>Placeholder to show tweets from db</h3>
-
+            <h3>Placeholder to show quacks from db</h3>
+            <p>Sample Quack</p>
+            <button id="comment24" type="button" onclick="makeComment(this.id)">Make</button>
+            
         </div>
 
-        <script src="js/main.js"></script>
+        <script src="/js/main.js"></script>
     </div>
 </body>
 
