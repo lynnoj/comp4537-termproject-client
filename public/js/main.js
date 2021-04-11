@@ -76,17 +76,16 @@ function loadQuacksHelper(dbID, i)
 function createQuack()
 {
     let xhr = new XMLHttpRequest();
-    // let username = getUsername();
-    // let content = document.getElementById("create-quack-content").value;
-    // let jsonString = JSON.stringify({"username": username, "Content": content});
-    let jsonString = JSON.stringify({"username": "bob", "content": "bobby"});
+    let username = getUsername();
+    let content = document.getElementById("create-quack-content").value;
+    let jsonString = JSON.stringify({"username": username, "Content": content});
 
     xhr.open("POST", "https://comp4537-termproject-api.herokuapp.com/API/V1/createquack", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
     xhr.onreadystatechange = function()
     {
-        if (this.readyState == 4 && this.status == 200)
+        if (this.readyState == 4 && this.status == 201)
         {
             console.log(xhr.responseText);
         }
@@ -135,7 +134,7 @@ function updateQuack(id)
     let dbID = parseID(length, id);
     let updatedQuack = document.getElementById("editQuackArea" + dbID).value;
     let user = getUsername();
-    let jsonString = JSON.stringify({"quackid": parseInt(dbID), "username": user, "updatedquack": updatedQuack});
+    let jsonString = JSON.stringify({"quackid": parseInt(dbID), "username": user, "quack": updatedQuack});
     let xhr = new XMLHttpRequest();
 
     xhr.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editquack", true);
@@ -176,8 +175,7 @@ function deleteQuack(id)
     xhr.send(jsonString);
     xhr.onreadystatechange = function()
     {
-        // might need to change status from 200 to 201?
-        if (this.readyState == 4 && this.status == 200)
+        if (this.readyState == 4 && this.status == 204)
         {
             console.log(xhr.responseText);
             quackDiv.remove();
@@ -210,7 +208,3 @@ function parseID(length, elementID)
 {
     return id.substring(length, elementID.length);
 }
-
-// Need session variable for userID/username?
-// need to somehow get comment ID
-// maybe make a commentData[], and get comment id from that?
