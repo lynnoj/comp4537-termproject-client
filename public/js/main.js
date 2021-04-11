@@ -1,11 +1,12 @@
 let quackData = [];
+let username = getUsername();
 
 // Initializes the page
 function init()
 {
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "api/loadquacks", true);
+    xhr.open("GET", "https://comp4537-termproject-api.herokuapp.com/API/V1/loadquacks", true);
     xhr.send();
     xhr.onreadystatechange = function()
     {
@@ -76,7 +77,6 @@ function loadQuacksHelper(dbID, i)
 function createQuack()
 {
     let xhr = new XMLHttpRequest();
-    let username = getUsername();
     let content = document.getElementById("create-quack-content").value;
     let jsonString = JSON.stringify({"username": username, "Content": content});
 
@@ -133,8 +133,7 @@ function updateQuack(id)
     let length = "updateQuack".length;
     let dbID = parseID(length, id);
     let updatedQuack = document.getElementById("editQuackArea" + dbID).value;
-    let user = getUsername();
-    let jsonString = JSON.stringify({"quackid": parseInt(dbID), "username": user, "quack": updatedQuack});
+    let jsonString = JSON.stringify({"quackid": parseInt(dbID), "username": username, "quack": updatedQuack});
     let xhr = new XMLHttpRequest();
 
     xhr.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editquack", true);
@@ -199,7 +198,17 @@ function viewQuack(id)
 // using the user's session variable
 function getUsername()
 {
-    
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/4537/termproject/API/V1/getUserName", true);
+    xhttp.send();
+    xhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            console.log(xhttp.response);
+            return xhttp.response;
+        }
+    }
 }
 
 // The length is the length of the id before the digits
