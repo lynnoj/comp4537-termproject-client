@@ -43,7 +43,6 @@ app.get('/4537/termproject/API/V1/quack', (req,res) => {
   res.sendFile(__dirname + '/views/quack.html')
 });
 
-
 app.get('/4537/termproject/API/V1/documentation', (req,res) => {
   res.sendFile(__dirname + '/views/documentation.html')
 });

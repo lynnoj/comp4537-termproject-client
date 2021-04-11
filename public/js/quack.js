@@ -94,7 +94,6 @@ function updateQuack(id)
     xhr.send(jsonString);
     xhr.onreadystatechange = function()
     {
-        // Might need to change status code 
         if (this.readyState == 4 && this.status == 200)
         {
             console.log(xhr.responseText);
@@ -205,7 +204,7 @@ function updateComment(id)
     let dbID = parseID(length, id);
     let updatedComment = document.getElementById("editCommentArea" + dbID).value;
     let user = getUsername();
-    let jsonString = JSON.stringify({"commentid": parseInt(dbID), "username": user, "updatedcomment": updatedComment});
+    let jsonString = JSON.stringify({"commentid": parseInt(dbID), "username": user, "comment": updatedComment});
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editcomment", true);
@@ -213,9 +212,6 @@ function updateComment(id)
     xhttp.send(jsonString);
     xhttp.onreadystatechange = function()
     {
-        // what is the successful PUT status code??
-        // On success, remove the textarea/buttons that was
-        // generated for editing
         if (this.readyState == 4 && this.status == 200)
         {
             console.log(xhttp.responseText);
@@ -248,8 +244,7 @@ function deleteComment(id)
     xhttp.send(jsonString);
     xhttp.onreadystatechange = function ()
     {
-        // What http code are we using for DELETE?
-        if (this.readyState == 4 && this.status == 200)
+        if (this.readyState == 4 && this.status == 204)
         {
             console.log(xhttp.responseText);
             commentDiv.remove();
