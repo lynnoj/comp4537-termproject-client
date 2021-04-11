@@ -116,7 +116,7 @@ function loadComments()
     
     for (let i = 0; i < commentData.length; ++i)
     {
-        let dbID = (i * 10) + 4;
+        let dbID = commentData[i].commentid;
         let div = document.createElement("div");
         let user = commentData[i].username;
         let comment = document.createElement("p");
