@@ -1,5 +1,6 @@
 let quackData = [];
 let username = getUsername();
+// let username = "johndoe1";
 
 // Initializes the page
 function init()
@@ -7,6 +8,7 @@ function init()
     let xhr = new XMLHttpRequest();
 
     xhr.open("GET", "https://comp4537-termproject-api.herokuapp.com/API/V1/loadquacks", true);
+    xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhr.send();
     xhr.onreadystatechange = function()
     {
@@ -22,6 +24,7 @@ function init()
 // Populates the page with tweets and the user's name
 function loadQuacks()
 {
+    console.log("inside loadQuacks()");
     for (let i = quackData.length - 1; i >= 0; --i)
     {
         let dbID = (i * 10) + 4;
@@ -37,7 +40,11 @@ function loadQuacksHelper(dbID, i)
 {
     let contentDiv = document.getElementById("display-quack");
     let quackDiv = document.createElement("div");
-    let user = document.createElement("p");
+    let buttonDiv = document.createElement("div");
+    let div1 = document.createElement("div");
+    let div2 = document.createElement("div");
+    let div3 = document.createElement("div");
+    let user = document.createElement("h3");
     let quackContent = document.createElement("p");
     let loadButton = document.createElement("button");
     let editButton = document.createElement("button");
@@ -45,6 +52,8 @@ function loadQuacksHelper(dbID, i)
     const linebreak = document.createElement("br");
 
     quackDiv.setAttribute("id", "quackDiv" + dbID);
+    quackDiv.setAttribute("class", "quackDivStyle");
+    buttonDiv.setAttribute("class", "buttonContainer");
     loadButton.setAttribute("id", "loadComment" + dbID);
     loadButton.setAttribute("type", "button");
     loadButton.setAttribute("onclick", "viewQuack(this.id)");
@@ -56,16 +65,18 @@ function loadQuacksHelper(dbID, i)
     deleteButton.setAttribute("onclick", "deleteQuack(this.id)");
     
     user.textContent = quackData[i].username;
-    quackContent.textContent = quackData[i].content;
+    quackContent.textContent = quackData[i].Content;
     loadButton.textContent = "comments"
     editButton.textContent = "edit"
     deleteButton.textContent = "delete quack";
     
+    buttonDiv.append(loadButton);
+    buttonDiv.append(editButton);
+    buttonDiv.append(deleteButton);
+
     quackDiv.append(user);
     quackDiv.append(quackContent);
-    quackDiv.append(loadButton);
-    quackDiv.append(editButton);
-    quackDiv.append(deleteButton);
+    quackDiv.append(buttonDiv);
     quackDiv.append(linebreak);
     quackDiv.append(linebreak);
     contentDiv.append(quackDiv);
@@ -78,9 +89,10 @@ function createQuack()
 {
     let xhr = new XMLHttpRequest();
     let content = document.getElementById("create-quack-content").value;
-    let jsonString = JSON.stringify({"username": username, "Content": content});
+    let jsonString = JSON.stringify({"username": username, "content": content});
 
     xhr.open("POST", "https://comp4537-termproject-api.herokuapp.com/API/V1/createquack", true);
+    xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
     xhr.onreadystatechange = function()
@@ -88,6 +100,12 @@ function createQuack()
         if (this.readyState == 4 && this.status == 201)
         {
             console.log(xhr.responseText);
+            location.href = "/4537/termproject/API/V1/main";
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            location.href = "/4537/termproject/API/V1/main";
         }
     }
 }
@@ -133,10 +151,11 @@ function updateQuack(id)
     let length = "updateQuack".length;
     let dbID = parseID(length, id);
     let updatedQuack = document.getElementById("editQuackArea" + dbID).value;
-    let jsonString = JSON.stringify({"quackid": parseInt(dbID), "username": username, "quack": updatedQuack});
+    let jsonString = JSON.stringify({"quackid": parseInt(dbID), "username": username, "content": updatedQuack});
     let xhr = new XMLHttpRequest();
 
     xhr.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editquack", true);
+    xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
     xhr.onreadystatechange = function()
@@ -147,6 +166,7 @@ function updateQuack(id)
             console.log(xhr.responseText);
             let cancelEditID = "cancelEdit" + dbID;
             cancelEdit(cancelEditID);
+            location.href("/4537/termproject/API/V1/main");
         }
     }
 }
@@ -170,6 +190,7 @@ function deleteQuack(id)
     let jsonString = JSON.stringify({"quackid": dbID});
 
     xhr.open("DELETE", "https://comp4537-termproject-api.herokuapp.com/API/V1/deletequack", true);
+    xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
     xhr.onreadystatechange = function()
@@ -187,8 +208,9 @@ function viewQuack(id)
 {
     let length = "loadComment".length;
     let dbID = parseInt(parseID(length, id));
-    let quack = quackData[(dbID - 4) / 10];
+    let quack = JSON.stringify(quackData[(dbID - 4) / 10]);
 
+    console.log("dbID: " + dbID + "\nquack: " + quack);
     localStorage.setItem("quack", quack);
     localStorage.setItem("id", dbID);
     location.href = "/4537/termproject/API/V1/quack";
@@ -199,7 +221,9 @@ function viewQuack(id)
 function getUsername()
 {
     let xhttp = new XMLHttpRequest();
+
     xhttp.open("GET", "/4537/termproject/API/V1/getUserName", true);
+    xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhttp.send();
     xhttp.onreadystatechange = function()
     {
@@ -215,5 +239,5 @@ function getUsername()
 // ex: the length of "comment14" is the length of "comment", or 7
 function parseID(length, elementID)
 {
-    return id.substring(length, elementID.length);
+    return elementID.substring(length, elementID.length);
 }

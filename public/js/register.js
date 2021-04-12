@@ -21,7 +21,7 @@ function registerUser(){
         email:email
     }
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:3000/API/V1/register',true);
+    xhr.open('POST', 'https://comp4537-termproject-api.herokuapp.com/API/V1/register',true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(registerJson));
     xhr.onreadystatechange = function() {

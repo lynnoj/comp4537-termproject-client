@@ -8,66 +8,65 @@
     <title>Quacker</title>
 </head>
 
-<body>
+<body onload="init()">
+
+    <!-- Navigation Bar -->
+    <div id="nav-bar">
+
+        <div id="nav-bar-left">
+
+            <div>
+                <a href="main.html"><img src="/images/logo.jpg" alt="Icon"></a>
+            </div>
+
+            <div>
+                <p>Quacker</p>
+            </div>
+
+        </div>
+
+        <div id="courses">
+
+            <ul>
+                <li id="current-link">HOME</li>
+                <li><a href="">Blank</a></li>
+                <li><a href="">Empty</a></li>
+                <li><a href="/4537/termproject/API/V1/login">Login</a></li>
+            </ul>
+
+        </div>
+
+    </div>
 
     <div class="wrapper">
 
-        <!-- Navigation Bar -->
-        <div id="nav-bar">
-
-            <div id="nav-bar-left">
-
-                <div>
-                    <a href="main.html"><img src="/images/logo.jpg" alt="Icon"></a>
-                </div>
-
-                <div>
-                    <p>Quacker</p>
-                </div>
-
-            </div>
-
-            <div id="courses">
-
-                <ul>
-                    <li id="current-link">HOME</li>
-                    <li><a href="">Blank</a></li>
-                    <li><a href="">Empty</a></li>
-                    <li><a href="/index.html">Login</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-
         <!-- Create Quack Section -->
         <div id="create-quack">
-
+    
             <div>
                 <h3>Create a quack</h3>
             </div>
-
+    
             <div>
                 <textarea name="quack-content" id="create-quack-content" 
-                    cols="60" rows="6" placeholder="What's happening?" maxlength="255"></textarea>
+                    cols="60" rows="8" placeholder="What's happening?" maxlength="255"></textarea>
             </div>
-
+    
             <div>
                 <button type="button" onclick="createQuack()">Quack</button>
             </div>
-
+    
         </div>
-
+    
         <!-- Display Tweet Section -->
         <div id="display-quack">
-
-            <h3>Placeholder to show quacks from db</h3>
-            <p>Sample Quack</p>
-            <button id="comment24" type="button" onclick="makeComment(this.id)">Make</button>
+    
+            <h1>News Feed</h1>
             
         </div>
-
+        
         <script src="/js/main.js"></script>
+        
     </div>
 </body>
 

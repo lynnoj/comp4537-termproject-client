@@ -94,3 +94,108 @@ body
 {
 	margin-left: 12px;
 }
+
+.wrapper
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: rgb( 245, 245, 245);
+}
+
+#create-quack
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: 15vw;
+	margin-right: 15vw;
+	margin-bottom: 5vh;
+	padding-bottom: 5vh;
+	border-bottom: 1px solid rgb(0, 71, 143);
+}
+
+#create-quack h3
+{
+	font-size: 2em;
+	align-self:flex-start;
+	color: rgb(126, 125, 128);
+}
+
+#create-quack textarea
+{
+	margin-bottom: 4vh;
+	outline: none;
+	resize: none;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: rgb(81, 80, 83);
+	background-color: rgb( 245, 245, 245);
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+}
+button
+{
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 8px 18px 8px 18px;
+	border-radius: 5vw;
+	border: 1px solid rgb(0, 71, 143);
+	background-color: rgb( 245, 245, 245);
+	color: rgb(0, 71, 143);
+	outline: none;
+}
+
+button:hover
+{
+	background-color: rgb(0, 71, 143);
+	color: white;
+}
+
+#display-quack
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#display-quack h1
+{
+	color:rgb(126, 125, 128);
+}
+
+.quackDivStyle
+{
+	margin-bottom: 2vh;
+	padding: 20px 20px 20px 20px;
+	border: 1px solid rgb(126, 125, 128);
+	border-radius: 5px;
+	width: 33%;
+}
+
+.quackDivStyle h3
+{
+	margin-top: 0;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.quackDivStyle p
+{
+	margin-bottom: 3vh;
+}
+
+.buttonContainer
+{
+	display: flex;
+	justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 768px)
+{
+	
+
+	.quackDivStyle
+	{
+		width: 75%;
+	}
+}

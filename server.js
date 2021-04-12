@@ -2,13 +2,15 @@ require('dotenv').config();
 const express = require('express')
 const http = require('http')
 const jwt = require('jsonwebtoken')
+const cors = require("cors");
 
 const app = express()
 const router = express.Router();
 const port = process.env.PORT || 3001
 let username;
 
-app.use(express.static('public'))
+app.use(cors({origin: "http://localhost:3001"}));
+app.use(express.static('public'));
 app.use("/css", express.static("public/css"));
 app.use("/js", express.static("public/js"));
 app.use("/images", express.static("public/images"));
@@ -53,9 +55,11 @@ function authenticateToken(req,res,next) {
   if (token == null) return res.sendStatus(401);
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err,user) => {
-    if (err) return res.sendStatus(403);
+    if (err) {
+      console.log(err);
+      return res.sendStatus(403);
+    }
     req.user = user;
-    console.log(user.username);
     username = user.username
     next();
   });

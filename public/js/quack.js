@@ -1,15 +1,18 @@
 let commentData = [];
-let username = getUsername();
+let username = "";
+getUsername();
+// let username = "johndoe1";
 
 function init()
 {
-    loadQuack(id);
+    loadQuack();
     
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", "API/V1/loadcomments", true);
-    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhttp.send("id=" + id);
+    xhttp.open("GET", "https://comp4537-termproject-api.herokuapp.com/API/V1/loadcomments", true);
+    xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.send("quackid=" + localStorage.getItem("id"));
     xhttp.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
@@ -37,7 +40,7 @@ function loadQuack()
     editBtn.setAttribute("onclick", "editQuack(" + dbID + ")");
 
     user.textContent = quack.username;
-    quackContent.textContent = quack.content;
+    quackContent.textContent = quack.Content;
     editBtn.textContent = "edit";
 
     div1.append(user);
@@ -90,6 +93,7 @@ function updateQuack(id)
     let xhr = new XMLHttpRequest();
 
     xhr.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editquack", true);
+    xhr.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(jsonString);
     xhr.onreadystatechange = function()
@@ -115,7 +119,7 @@ function loadComments()
     
     for (let i = 0; i < commentData.length; ++i)
     {
-        let dbID = commentData[i].commentid;
+        let dbID = commentData[i].CommentID;
         let div = document.createElement("div");
         let user = commentData[i].username;
         let comment = document.createElement("p");
@@ -129,7 +133,7 @@ function loadComments()
         deleteBtn.setAttribute("id", "deleteComment" + dbID);
         deleteBtn.setAttribute("onclick", "deleteComment(this.id)");
 
-        comment.textContent = commentData[i].comment;
+        comment.textContent = commentData[i].Comment;
         editBtn.textContent = "edit";
         deleteBtn.textContent = "delete";
 
@@ -143,13 +147,14 @@ function loadComments()
     }
 }
 
-function createComment()
+function createNewComment()
 {
     let xhttp = new XMLHttpRequest();
     let comment = document.getElementById("commentArea");
     let jsonString = JSON.stringify({"username": username, "comment": comment.value, "quackid": localStorage.getItem("id")});
     
     xhttp.open("POST", "https://comp4537-termproject-api.herokuapp.com/API/V1/createcomment", true);
+    xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(jsonString);
     xhttp.onreadystatechange = function()
@@ -206,6 +211,7 @@ function updateComment(id)
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editcomment", true);
+    xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(jsonString);
     xhttp.onreadystatechange = function()
@@ -239,6 +245,7 @@ function deleteComment(id)
 
     xhttp.open("DELETE", "https://comp4537-termproject-api.herokuapp.com/API/V1/deletecomment", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhttp.send(jsonString);
     xhttp.onreadystatechange = function ()
     {
@@ -254,20 +261,25 @@ function deleteComment(id)
 // ex: the length of "comment14" is the length of "comment", or 7
 function parseID(length, elementID)
 {
-    return id.substring(length, elementID.length);
+    return elementID.substring(length, elementID.length);
 }
 
 function getUsername()
 {
+    console.log("inside getUsername()");
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET", "/4537/termproject/API/V1/getUserName", true);
+    xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhttp.send();
     xhttp.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
         {
+            console.log("returning username");
             console.log(xhttp.response);
-            return xhttp.response;
+            console.log(typeof(xhttp.response));
+            username = xhttp.response;
+            // return xhttp.response;
         }
     }
 }

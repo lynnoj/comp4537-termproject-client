@@ -15,6 +15,7 @@ function loginUser(){
     let xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://comp4537-termproject-api.herokuapp.com/API/V1/login',true);
     xhr.setRequestHeader('Content-type', 'application/json');
+    // xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("accessToken"));
     xhr.send(JSON.stringify(loginJson));
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {

@@ -3,13 +3,44 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/css/quacker.css">
+    <link rel="stylesheet" type="text/css" href="/css/quack.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quacker</title>
 </head>
 
-<body onload="init()">
+<!-- <body onload="init()"> -->
+<body>
     <div class="wrapper">
+
+        <!-- Navigation Bar -->
+        <div id="nav-bar">
+
+            <div id="nav-bar-left">
+
+                <div>
+                    <a href="main.html"><img src="/images/logo.jpg" alt="Icon"></a>
+                </div>
+
+                <div>
+                    <p>Quacker</p>
+                </div>
+
+            </div>
+
+            <div id="courses">
+
+                <ul>
+                    <li id="current-link">HOME</li>
+                    <li><a href="">Blank</a></li>
+                    <li><a href="">Empty</a></li>
+                    <li><a href="/4537/termproject/API/V1/login">Login</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
         <div class="header">
             <div>
                 <button type="button" onclick="back()">Back</button>
@@ -25,12 +56,12 @@
 
         <div id="comment-section">
             <div>
-                <textarea name="comment-input" id="commentArea" cols="60" 
-                  rows="6" placeholder="Add a comment..." maxlength="255"></textarea>
+                <textarea name="comment-input" id="commentArea" cols="60" rows="6" placeholder="Add a comment..."
+                    maxlength="255"></textarea>
             </div>
 
             <div>
-                <button type="button" onclick="createComment()">Comment</button>
+                <button type="button" onclick="createNewComment()">Comment</button>
             </div>
 
         </div>
