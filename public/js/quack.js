@@ -1,4 +1,5 @@
 let commentData = [];
+let username = getUsername();
 
 function init()
 {
@@ -85,8 +86,7 @@ function editQuack()
 function updateQuack(id)
 {
     let updatedQuack = document.getElementById("editQuackArea").value;
-    let user = getUsername(); // probably don't need this if not using localstorage
-    let jsonString = JSON.stringify({"quackid": localStorage.get("id"), "username": user, "content": updatedQuack});
+    let jsonString = JSON.stringify({"quackid": localStorage.get("id"), "username": username, "content": updatedQuack});
     let xhr = new XMLHttpRequest();
 
     xhr.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editquack", true);
@@ -147,7 +147,6 @@ function createComment()
 {
     let xhttp = new XMLHttpRequest();
     let comment = document.getElementById("commentArea");
-    let username = getUsername();
     let jsonString = JSON.stringify({"username": username, "comment": comment.value, "quackid": localStorage.getItem("id")});
     
     xhttp.open("POST", "https://comp4537-termproject-api.herokuapp.com/API/V1/createcomment", true);
@@ -203,8 +202,7 @@ function updateComment(id)
     let length = "updateComment".length;
     let dbID = parseID(length, id);
     let updatedComment = document.getElementById("editCommentArea" + dbID).value;
-    let user = getUsername();
-    let jsonString = JSON.stringify({"commentid": parseInt(dbID), "username": user, "comment": updatedComment});
+    let jsonString = JSON.stringify({"commentid": parseInt(dbID), "username": username, "comment": updatedComment});
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editcomment", true);
@@ -261,7 +259,17 @@ function parseID(length, elementID)
 
 function getUsername()
 {
-
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/4537/termproject/API/V1/getUserName", true);
+    xhttp.send();
+    xhttp.onreadystatechange = function()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            console.log(xhttp.response);
+            return xhttp.response;
+        }
+    }
 }
 
 function back()
