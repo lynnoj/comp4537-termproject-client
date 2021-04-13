@@ -1,9 +1,9 @@
 let statsJSON;
+let status;
+document.getElementById("login-btn").onclick = function () {
+    loginAdmin();
+};
 
-function init(){
-    getStats();
-    
-}
 function getStats(){
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://comp4537-termproject-api.herokuapp.com/API/V1/getStats',true);
@@ -33,4 +33,36 @@ function fillTable(){
         newCell2.appendChild(newText2);
         newCell3.appendChild(newText3);
     }
+}
+
+function loginAdmin(){
+    let username = document.getElementById('username').value
+    let password = document.getElementById('password').value
+    let loginJson = {
+        username:username,
+        password:password
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://comp4537-termproject-api.herokuapp.com/API/V1/loginAdmin',true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    // xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("accessToken"));
+    xhr.send(JSON.stringify(loginJson));
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            getStats();
+            document.getElementById("login-container").style.display = "none"; 
+            document.getElementById("tables").style.display = "block"; 
+        }
+        if (this.readyState == 4 && this.status == 401) {
+            addErrorMessage(xhr.responseText);
+        }
+        
+    };  
+}
+
+function addErrorMessage(responseText){
+    let myDiv = document.getElementById("errorDiv");
+    document.getElementById("errorDiv").innerHTML = "";
+    myDiv.innerHTML = "<p>" + responseText + "<p>";
+
 }
