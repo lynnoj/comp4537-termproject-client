@@ -68,6 +68,7 @@ function loadQuack()
 
 function editQuack()
 {
+    let editBtn = document.getElementById("editQuack");
     let parent = document.getElementById("quack-section");
     let container = document.createElement("div");
     let div1 = document.createElement("div");
@@ -76,6 +77,7 @@ function editQuack()
     let updateBtn = document.createElement("button");
     let cancelBtn = document.createElement("button");
 
+    editBtn.setAttribute("style", "display: none;");
     container.setAttribute("id", "editQuackContainer");
     container.setAttribute("class", "editQuackContainerStyle");
     editQuackArea.setAttribute("id", "editQuackArea");
@@ -98,13 +100,13 @@ function editQuack()
 
     container.append(div1);
     container.append(div2);
-    parent.after(container);
+    parent.append(container);
 }
 
 function updateQuack(id)
 {
     let updatedQuack = document.getElementById("editQuackArea").value;
-    let jsonString = JSON.stringify({"quackid": localStorage.get("id"), "username": username, "content": updatedQuack});
+    let jsonString = JSON.stringify({"QuackID": localStorage.getItem("id"), "username": username, "Content": updatedQuack});
     let xhr = new XMLHttpRequest();
 
     xhr.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editquack", true);
@@ -131,6 +133,9 @@ function updateQuack(id)
 function cancelQuackEdit()
 {
     let container = document.getElementById("editQuackContainer");
+    let editBtn = document.getElementById("editQuack");
+
+    editBtn.setAttribute("style", "display: inline-block");
     container.remove();
 }
 
@@ -143,18 +148,20 @@ function loadComments()
     {
         let dbID = commentData[i].commentid;
         let div = document.createElement("div");
-        let user = commentData[i].username;
+        let user = document.createElement("h3");
         let comment = document.createElement("p");
         let editBtn = document.createElement("button");
         let deleteBtn = document.createElement("button");
         const linebreak = document.createElement("br");
         
         div.setAttribute("id", "commentDiv" + dbID);
+        div.setAttribute("class", "commentDivStyle");
         editBtn.setAttribute("id", "editComment" + dbID);
         editBtn.setAttribute("onclick", "editComment(this.id)");
         deleteBtn.setAttribute("id", "deleteComment" + dbID);
         deleteBtn.setAttribute("onclick", "deleteComment(this.id)");
-
+        
+        user.textContent = commentData[i].username;
         comment.textContent = commentData[i].comment;
         editBtn.textContent = "edit";
         deleteBtn.textContent = "delete";
@@ -199,7 +206,8 @@ function editComment(id)
 {
     let length = "editComment".length;
     let dbID = parseID(length, id);
-    let parent = document.getElementById(id);
+    let editBtn = document.getElementById("editComment" + dbID);
+    let parent = document.getElementById("commentDiv" + dbID);
     let container = document.createElement("div");
     let div1 = document.createElement("div");
     let div2 = document.createElement("div");
@@ -207,7 +215,9 @@ function editComment(id)
     let updateBtn = document.createElement("button");
     let cancelBtn = document.createElement("button");
     
+    editBtn.setAttribute("style", "display: none");
     container.setAttribute("id", "editContainer" + dbID);
+    container.setAttribute("class", "commentDivStyle");
     editCommentArea.setAttribute("id", "editCommentArea" + dbID);
     editCommentArea.setAttribute("col", "60");
     editCommentArea.setAttribute("rows", "6");
@@ -266,8 +276,10 @@ function cancelEdit(id)
 {
     let length = "cancelEdit".length;
     let dbID = parseID(length, id);
+    let editBtn = document.getElementById("editComment" + dbID);
     let container = document.getElementById("editContainer" + dbID);
 
+    editBtn.setAttribute("style", "display: inline-block");
     container.remove();
 }
 

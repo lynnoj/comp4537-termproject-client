@@ -194,3 +194,74 @@ button:hover
     justify-content: center;
     align-items: center;
 }
+
+#comment-section h3
+{
+    margin-top: 0;
+    color: rgb(126, 125, 128);
+    font-size: 2em;
+}
+
+.commentDivStyle
+{
+    margin-bottom: 2vh;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid rgb(126, 125, 128);
+    border-radius: 5px;
+    width: 33%;
+}
+
+.commentDivStyle h3
+{
+	margin-top: 0;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.commentDivStyle p
+{
+	margin-bottom: 3vh;
+}
+
+.commentDivStyle textarea
+{
+    margin-bottom: 4vh;
+	outline: none;
+	resize: none;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: rgb(81, 80, 83);
+	background-color: rgb( 245, 245, 245);
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+    width: 95%;
+}
+
+.editQuackContainerStyle
+{
+    margin-bottom: 2vh;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid rgb(126, 125, 128);
+    border-radius: 5px;
+    width: 33%;
+}
+
+.editQuackContainerStyle textarea
+{
+    margin-bottom: 4vh;
+	outline: none;
+	resize: none;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: rgb(81, 80, 83);
+	background-color: rgb( 245, 245, 245);
+	border-radius: 5px;
+	padding: 5px 5px 5px 5px;
+    width: 95%;
+}
+
+@media only screen and (max-width: 768px)
+{
+	.commentDivStyle
+	{
+		width: 75%;
+	}
+}
