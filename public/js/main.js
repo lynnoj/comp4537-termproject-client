@@ -27,8 +27,8 @@ function loadQuacks()
     console.log("inside loadQuacks()");
     for (let i = quackData.length - 1; i >= 0; --i)
     {
-        let dbID = (i * 10) + 4;
-        loadQuacksHelper(dbID, i);
+        // let dbID = (i * 10) + 4;
+        loadQuacksHelper(i);
     }
 }
 
@@ -36,8 +36,9 @@ function loadQuacks()
 // need to create an edit button
 // need to implement comments here. maybe have a load
 // comments button below each quack? 
-function loadQuacksHelper(dbID, i)
+function loadQuacksHelper(i)
 {
+    let qid = quackData[i].QuackID;
     let contentDiv = document.getElementById("display-quack");
     let quackDiv = document.createElement("div");
     let buttonDiv = document.createElement("div");
@@ -51,16 +52,16 @@ function loadQuacksHelper(dbID, i)
     let deleteButton = document.createElement("button");
     const linebreak = document.createElement("br");
 
-    quackDiv.setAttribute("id", "quackDiv" + dbID);
+    quackDiv.setAttribute("id", "quackDiv" + qid);
     quackDiv.setAttribute("class", "quackDivStyle");
     buttonDiv.setAttribute("class", "buttonContainer");
-    loadButton.setAttribute("id", "loadComment" + dbID);
+    loadButton.setAttribute("id", "loadComment" + qid);
     loadButton.setAttribute("type", "button");
     loadButton.setAttribute("onclick", "viewQuack(this.id)");
-    editButton.setAttribute("id", "editQuack" + dbID);
+    editButton.setAttribute("id", "editQuack" + qid);
     editButton.setAttribute("type", "button");
     editButton.setAttribute("onclick", "editQuack(this.id)");
-    deleteButton.setAttribute("id", "deleteQuack" + dbID);
+    deleteButton.setAttribute("id", "deleteQuack" + qid);
     deleteButton.setAttribute("type", "button");
     deleteButton.setAttribute("onclick", "deleteQuack(this.id)");
     

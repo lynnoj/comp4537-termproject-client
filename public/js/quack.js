@@ -8,11 +8,12 @@ function init()
     loadQuack();
     
     let xhttp = new XMLHttpRequest();
+    let params = "quackid=" + localStorage.getItem("id");
 
-    xhttp.open("GET", "https://comp4537-termproject-api.herokuapp.com/API/V1/loadcomments", true);
+    xhttp.open("GET", "https://comp4537-termproject-api.herokuapp.com/API/V1/loadcomments" + "?" + params, true);
     xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("quackid=" + localStorage.getItem("id"));
+    xhttp.send();
     xhttp.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
@@ -115,6 +116,7 @@ function cancelQuackEdit()
 
 function loadComments()
 {
+    console.log("Inside loadComments()");
     let parent = document.getElementById("comment-section");
     
     for (let i = 0; i < commentData.length; ++i)
@@ -240,7 +242,7 @@ function deleteComment(id)
     let length = "deleteComment".length;
     let dbID = parseID(length, id);
     let commentDiv = document.getElementById("commentDiv" + dbID);
-    let jsonString = JSON.stringify({"commentid": parseInt(dbID)});
+    let jsonString = JSON.stringify({"quackid": localStorage.getItem("id"), "commentid": parseInt(dbID)});
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("DELETE", "https://comp4537-termproject-api.herokuapp.com/API/V1/deletecomment", true);
@@ -275,11 +277,7 @@ function getUsername()
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            console.log("returning username");
-            console.log(xhttp.response);
-            console.log(typeof(xhttp.response));
             username = xhttp.response;
-            // return xhttp.response;
         }
     }
 }
