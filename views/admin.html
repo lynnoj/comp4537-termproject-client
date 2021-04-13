@@ -6,19 +6,63 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>COMP4537</title>
     </head>
-    <body onload = "init()">
-        <h1>Admin</h1>
-        <table id="stats-table" >
-            <thead>
-                <tr>
-                    <th>Method</th>
-                    <th>Endpoint</th> 
-                    <th>Requests</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+    <body>
+        <!-- Navigation Bar -->
+        <div id="nav-bar">
+
+            <div id="nav-bar-left">
+
+            <div>
+                <a href="main.html"><img src="/images/logo.jpg" alt="Icon"></a>
+            </div>
+
+            <div>
+                <p>Quacker</p>
+            </div>
+
+            </div>
+
+            <div id="courses">
+
+            <ul>
+                <li id="current-link">HOME</li>
+                <li><a href="">Blank</a></li>
+                <li><a href="">Empty</a></li>
+                <li><a href="/4537/termproject/API/V1/login">Login</a></li>
+            </ul>
+
+            </div>
+
+        </div>
+        <div id ="tables">
+            <h1>Admin</h1>
+            <table id="stats-table" >
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Endpoint</th> 
+                        <th>Requests</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="login-wrapper">
+            <div class="login-container" id = "login-container">
+                <div id ="login">
+                    <h1>Admin Login</h1>
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username"><br>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password"><br>
+                    <button id="login-btn">Login</button>
+                    <div id ="errorDiv">
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="/js/admin.js"></script>
     </body>
 </html>  

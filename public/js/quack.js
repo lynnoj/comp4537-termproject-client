@@ -8,17 +8,24 @@ function init()
     loadQuack();
     
     let xhttp = new XMLHttpRequest();
+    let params = "quackid=" + localStorage.getItem("id");
 
-    xhttp.open("GET", "https://comp4537-termproject-api.herokuapp.com/API/V1/loadcomments", true);
+    xhttp.open("GET", "https://comp4537-termproject-api.herokuapp.com/API/V1/loadcomments" + "?" + params, true);
     xhttp.setRequestHeader ("Authorization", "Bearer " + localStorage.getItem('accessToken'));
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("quackid=" + localStorage.getItem("id"));
+    xhttp.send();
     xhttp.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
         {
             commentData = JSON.parse(xhttp.responseText);
+            console.log(commentData);
             loadComments();
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }
@@ -26,15 +33,19 @@ function init()
 function loadQuack()
 {
     let dbID = localStorage.getItem("id");
-    let quack = localStorage.getItem("quack");
+    let quack = JSON.parse(localStorage.getItem("quack"));
     let parent = document.getElementById("quack-section");
-    let user = document.createElement("p");
+    let container = document.createElement("div");
+    let container2 = document.createElement("div");
+    let user = document.createElement("h3");
     let quackContent = document.createElement("p");
     let editBtn = document.createElement("button");
     let div1 = document.createElement("div");
     let div2 = document.createElement("div");
     let div3 = document.createElement("div");
 
+    container.setAttribute("class", "quack-container-style");
+    container2.setAttribute("class", "quack-container-header");
     editBtn.setAttribute("id", "editQuack")
     editBtn.setAttribute("type", "button");
     editBtn.setAttribute("onclick", "editQuack(" + dbID + ")");
@@ -44,12 +55,15 @@ function loadQuack()
     editBtn.textContent = "edit";
 
     div1.append(user);
-    div2.append(quackContent);
     div3.append(editBtn);
+    div2.append(quackContent);
 
-    parent.append(div1);
-    parent.append(div2);
-    parent.append(div3);
+    container2.append(div1);
+    container2.append(div3);
+
+    container.append(container2);
+    container.append(div2);
+    parent.append(container);
 }
 
 function editQuack()
@@ -63,6 +77,7 @@ function editQuack()
     let cancelBtn = document.createElement("button");
 
     container.setAttribute("id", "editQuackContainer");
+    container.setAttribute("class", "editQuackContainerStyle");
     editQuackArea.setAttribute("id", "editQuackArea");
     editQuackArea.setAttribute("col", "60");
     editQuackArea.setAttribute("rows", "6");
@@ -103,7 +118,13 @@ function updateQuack(id)
             console.log(xhr.responseText);
             localStorage.setItem("quack", jsonString);
             cancelQuackEdit();
+            window.location.replace("/4537/termproject/API/V1/quack");
         }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhr.responseText);
+        } 
     }
 }
 
@@ -115,11 +136,12 @@ function cancelQuackEdit()
 
 function loadComments()
 {
+    console.log("Inside loadComments()");
     let parent = document.getElementById("comment-section");
     
     for (let i = 0; i < commentData.length; ++i)
     {
-        let dbID = commentData[i].CommentID;
+        let dbID = commentData[i].commentid;
         let div = document.createElement("div");
         let user = commentData[i].username;
         let comment = document.createElement("p");
@@ -133,7 +155,7 @@ function loadComments()
         deleteBtn.setAttribute("id", "deleteComment" + dbID);
         deleteBtn.setAttribute("onclick", "deleteComment(this.id)");
 
-        comment.textContent = commentData[i].Comment;
+        comment.textContent = commentData[i].comment;
         editBtn.textContent = "edit";
         deleteBtn.textContent = "delete";
 
@@ -163,6 +185,12 @@ function createNewComment()
         {
             console.log(xhttp.responseText);
             comment.value = "";
+            window.location.replace("/4537/termproject/API/V1/quack");
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }
@@ -207,7 +235,9 @@ function updateComment(id)
     let length = "updateComment".length;
     let dbID = parseID(length, id);
     let updatedComment = document.getElementById("editCommentArea" + dbID).value;
+    console.log(updatedComment);
     let jsonString = JSON.stringify({"commentid": parseInt(dbID), "username": username, "comment": updatedComment});
+    console.log(jsonString);
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editcomment", true);
@@ -221,6 +251,12 @@ function updateComment(id)
             console.log(xhttp.responseText);
             let cancelEditID = "cancelEdit" + dbID;
             cancelEdit(cancelEditID);
+            window.location.replace("/4537/termproject/API/V1/quack");
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }
@@ -240,7 +276,7 @@ function deleteComment(id)
     let length = "deleteComment".length;
     let dbID = parseID(length, id);
     let commentDiv = document.getElementById("commentDiv" + dbID);
-    let jsonString = JSON.stringify({"commentid": parseInt(dbID)});
+    let jsonString = JSON.stringify({"quackid": localStorage.getItem("id"), "commentid": parseInt(dbID)});
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("DELETE", "https://comp4537-termproject-api.herokuapp.com/API/V1/deletecomment", true);
@@ -253,6 +289,11 @@ function deleteComment(id)
         {
             console.log(xhttp.responseText);
             commentDiv.remove();
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }
@@ -275,11 +316,7 @@ function getUsername()
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            console.log("returning username");
-            console.log(xhttp.response);
-            console.log(typeof(xhttp.response));
             username = xhttp.response;
-            // return xhttp.response;
         }
     }
 }
