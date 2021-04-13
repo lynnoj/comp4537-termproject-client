@@ -80,7 +80,7 @@ function loadQuacksHelper(i)
     let user = document.createElement("h3");
     let quackContent = document.createElement("p");
     let loadButton = document.createElement("button");
-    let editButton = document.createElement("button");
+    // let editButton = document.createElement("button");
     let deleteButton = document.createElement("button");
     const linebreak = document.createElement("br");
 
@@ -90,9 +90,9 @@ function loadQuacksHelper(i)
     loadButton.setAttribute("id", "loadComment" + qid);
     loadButton.setAttribute("type", "button");
     loadButton.setAttribute("onclick", "viewQuack(this.id)");
-    editButton.setAttribute("id", "editQuack" + qid);
-    editButton.setAttribute("type", "button");
-    editButton.setAttribute("onclick", "editQuack(this.id)");
+    // editButton.setAttribute("id", "editQuack" + qid);
+    // editButton.setAttribute("type", "button");
+    // editButton.setAttribute("onclick", "editQuack(this.id)");
     deleteButton.setAttribute("id", "deleteQuack" + qid);
     deleteButton.setAttribute("type", "button");
     deleteButton.setAttribute("onclick", "deleteQuack(this.id)");
@@ -100,11 +100,11 @@ function loadQuacksHelper(i)
     user.textContent = quackData[i].username;
     quackContent.textContent = quackData[i].Content;
     loadButton.textContent = "comments"
-    editButton.textContent = "edit"
+    // editButton.textContent = "edit"
     deleteButton.textContent = "delete quack";
     
     buttonDiv.append(loadButton);
-    buttonDiv.append(editButton);
+    // buttonDiv.append(editButton);
     buttonDiv.append(deleteButton);
 
     quackDiv.append(user);

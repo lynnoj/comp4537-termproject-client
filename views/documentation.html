@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Tweeter API</title>
+    <title>Quacker API</title>
     <style type="text/css">
       body {
 	font-family: Trebuchet MS, sans-serif;
@@ -179,12 +179,12 @@ font-style: italic;
     </style>
   </head>
   <body>
-  <h1>Tweeter API</h1>
-    <div class="app-desc">This is an API for Tweeter</div>
+  <h1>Quacker API</h1>
+    <div class="app-desc">This is an API for Quacker</div>
     <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
     <div class="app-desc">Contact Info: <a href="jonnylu@live.ca">jonnylu@live.ca</a></div>
     <div class="app-desc">Version: 1.0.0</div>
-    <div class="app-desc">BasePath:/API/V1/</div>
+    <div class="app-desc">BasePath:/jonnylu/Quacker/1.0.0</div>
     <div class="license-info">Apache 2.0</div>
     <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
   <h2>Access</h2>
@@ -194,37 +194,49 @@ font-style: italic;
 
   <h3>Table of Contents </h3>
   <div class="method-summary"></div>
+  <h4><a href="#AdminLogin">AdminLogin</a></h4>
+  <ul>
+  <li><a href="#loginAdmin"><code><span class="http-method">post</span> /loginAdmin</code></a></li>
+  </ul>
+  <h4><a href="#ApiCallStatistics">ApiCallStatistics</a></h4>
+  <ul>
+  <li><a href="#getStats"><code><span class="http-method">get</span> /getStats</code></a></li>
+  </ul>
   <h4><a href="#CreateComment">CreateComment</a></h4>
   <ul>
   <li><a href="#createcomment"><code><span class="http-method">post</span> /createcomment</code></a></li>
   </ul>
-  <h4><a href="#CreateTweet">CreateTweet</a></h4>
+  <h4><a href="#CreateQuack">CreateQuack</a></h4>
   <ul>
-  <li><a href="#createtweet"><code><span class="http-method">post</span> /createtweet</code></a></li>
+  <li><a href="#createquack"><code><span class="http-method">post</span> /createquack</code></a></li>
   </ul>
   <h4><a href="#DeletesAComment">DeletesAComment</a></h4>
   <ul>
   <li><a href="#deletecomment"><code><span class="http-method">delete</span> /deletecomment</code></a></li>
   </ul>
-  <h4><a href="#DeletesATweet">DeletesATweet</a></h4>
+  <h4><a href="#DeletesAQuack">DeletesAQuack</a></h4>
   <ul>
-  <li><a href="#deletetweet"><code><span class="http-method">delete</span> /deletetweet</code></a></li>
+  <li><a href="#deletequack"><code><span class="http-method">delete</span> /deletequack</code></a></li>
   </ul>
   <h4><a href="#EditComment">EditComment</a></h4>
   <ul>
   <li><a href="#editcomment"><code><span class="http-method">put</span> /editcomment</code></a></li>
   </ul>
-  <h4><a href="#EditTweet">EditTweet</a></h4>
+  <h4><a href="#EditQuack">EditQuack</a></h4>
   <ul>
-  <li><a href="#edittweet"><code><span class="http-method">put</span> /edittweet</code></a></li>
+  <li><a href="#editquack"><code><span class="http-method">put</span> /editquack</code></a></li>
+  </ul>
+  <h4><a href="#LoadComments">LoadComments</a></h4>
+  <ul>
+  <li><a href="#loadcomments"><code><span class="http-method">get</span> /loadcomments</code></a></li>
+  </ul>
+  <h4><a href="#LoadQuacks">LoadQuacks</a></h4>
+  <ul>
+  <li><a href="#loadquacks"><code><span class="http-method">get</span> /loadquacks</code></a></li>
   </ul>
   <h4><a href="#SessionVariableCheck">SessionVariableCheck</a></h4>
   <ul>
   <li><a href="#validsession"><code><span class="http-method">get</span> /validsession</code></a></li>
-  </ul>
-  <h4><a href="#Tweet">Tweet</a></h4>
-  <ul>
-  <li><a href="#loadtweets"><code><span class="http-method">get</span> /loadtweets</code></a></li>
   </ul>
   <h4><a href="#UserLogin">UserLogin</a></h4>
   <ul>
@@ -235,6 +247,86 @@ font-style: italic;
   <li><a href="#register"><code><span class="http-method">post</span> /register</code></a></li>
   </ul>
 
+  <h1><a name="AdminLogin">AdminLogin</a></h1>
+  <div class="method"><a name="loginAdmin"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /loginAdmin</code></pre></div>
+    <div class="method-summary">logs a admin into the website (<span class="nickname">loginAdmin</span>)</div>
+    <div class="method-notes">logs a user into the website</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">UserLoginInfo <a href="#Admin">Admin</a> (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; User login information </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Admin logged in
+        <a href="#"></a>
+    <h4 class="field-label">401</h4>
+    Your username or password doesn't exist or it was invalid
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="ApiCallStatistics">ApiCallStatistics</a></h1>
+  <div class="method"><a name="getStats"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /getStats</code></pre></div>
+    <div class="method-summary">Gets the number of calls for each endpoint (<span class="nickname">getStats</span>)</div>
+    <div class="method-notes">Gets the number of RESTful API calls for each endopint</div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Error retrieving statistics
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
   <h1><a name="CreateComment">CreateComment</a></h1>
   <div class="method"><a name="createcomment"/>
     <div class="method-path">
@@ -268,20 +360,20 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">201</h4>
-    Successfully commented
+    Creating comment
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Error - Unable to create comment
+    Invalid data
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="CreateTweet">CreateTweet</a></h1>
-  <div class="method"><a name="createtweet"/>
+  <h1><a name="CreateQuack">CreateQuack</a></h1>
+  <div class="method"><a name="createquack"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /createtweet</code></pre></div>
-    <div class="method-summary">creates a tweet (<span class="nickname">createtweet</span>)</div>
-    <div class="method-notes">creates a tweet using the information that is passed in</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /createquack</code></pre></div>
+    <div class="method-summary">creates a quack (<span class="nickname">createquack</span>)</div>
+    <div class="method-notes">creates a quack using the information that is passed in</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -292,9 +384,9 @@ font-style: italic;
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">NewTweetInfo <a href="#Tweet">Tweet</a> (optional)</div>
+      <div class="param">NewQuackInfo <a href="#Quack">Quack</a> (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; New tweet information </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; New Quack information </div>
 
     </div>  <!-- field-items -->
 
@@ -308,10 +400,10 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">201</h4>
-    Successfully tweeted
+    Creating quack
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Error - Unable to create tweet
+    Invalid data
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -348,20 +440,20 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">204</h4>
-    Comment successfully deleted
+    Deleting comment
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Error - Unable to delete Comment
+    Comment doesn't exist
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="DeletesATweet">DeletesATweet</a></h1>
-  <div class="method"><a name="deletetweet"/>
+  <h1><a name="DeletesAQuack">DeletesAQuack</a></h1>
+  <div class="method"><a name="deletequack"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /deletetweet</code></pre></div>
-    <div class="method-summary">Deletes a tweet (<span class="nickname">deletetweet</span>)</div>
-    <div class="method-notes">Deletes an existing tweet</div>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /deletequack</code></pre></div>
+    <div class="method-summary">Deletes a quack (<span class="nickname">deletequack</span>)</div>
+    <div class="method-notes">Deletes an existing quack</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -372,9 +464,9 @@ font-style: italic;
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">TweetToDelete <a href="#Tweet">Tweet</a> (optional)</div>
+      <div class="param">QuackToDelete <a href="#Quack">Quack</a> (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The tweet to delete </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; The quack to delete </div>
 
     </div>  <!-- field-items -->
 
@@ -388,10 +480,10 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">204</h4>
-    Tweet successfully deleted
+    Deleting quack
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Error - Unable to delete tweet
+    Invalid quack
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -433,21 +525,21 @@ font-style: italic;
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">204</h4>
-    Comment updated successfully
+    <h4 class="field-label">200</h4>
+    Editing comment
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Error - Unable to edit comment
+    Invalid data
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="EditTweet">EditTweet</a></h1>
-  <div class="method"><a name="edittweet"/>
+  <h1><a name="EditQuack">EditQuack</a></h1>
+  <div class="method"><a name="editquack"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="put"><code class="huge"><span class="http-method">put</span> /edittweet</code></pre></div>
-    <div class="method-summary">Edits a tweet (<span class="nickname">edittweet</span>)</div>
-    <div class="method-notes">Edits an existing tweet</div>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /editquack</code></pre></div>
+    <div class="method-summary">Edits a quack (<span class="nickname">editquack</span>)</div>
+    <div class="method-notes">Edits an existing quack</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -458,9 +550,9 @@ font-style: italic;
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">UpdatedTweetInfo <a href="#Tweet">Tweet</a> (optional)</div>
+      <div class="param">UpdatedQuackInfo <a href="#Quack">Quack</a> (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; new information to update the tweet </div>
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; new information to update the quack </div>
 
     </div>  <!-- field-items -->
 
@@ -479,11 +571,95 @@ font-style: italic;
     </ul>
 
     <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">204</h4>
-    Tweet updated successfully
+    <h4 class="field-label">200</h4>
+    Editing quack
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Error - Unable to edit tweet
+    Invalid data
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="LoadComments">LoadComments</a></h1>
+  <div class="method"><a name="loadcomments"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /loadcomments</code></pre></div>
+    <div class="method-summary">Grabs comments from the database (<span class="nickname">loadcomments</span>)</div>
+    <div class="method-notes">Pulls comments from the database depending on the QuackID passed in, and loads it into the clients page</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully loaded comments
+        <a href="#Object">Object</a>
+    <h4 class="field-label">400</h4>
+    Empty there are no comments
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="LoadQuacks">LoadQuacks</a></h1>
+  <div class="method"><a name="loadquacks"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /loadquacks</code></pre></div>
+    <div class="method-summary">Grabs quacks from the database (<span class="nickname">loadquacks</span>)</div>
+    <div class="method-notes">Pulls quacks from the database and loads it into the clients page</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Successfully loaded quacks
+        <a href="#Object">Object</a>
+    <h4 class="field-label">400</h4>
+    Empty there are no quacks
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -524,50 +700,8 @@ font-style: italic;
     <h4 class="field-label">200</h4>
     User session is valid
         <a href="#Object">Object</a>
-    <h4 class="field-label">400</h4>
+    <h4 class="field-label">403</h4>
     Invalid user session
-        <a href="#"></a>
-  </div> <!-- method -->
-  <hr/>
-  <h1><a name="Tweet">Tweet</a></h1>
-  <div class="method"><a name="loadtweets"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /loadtweets</code></pre></div>
-    <div class="method-summary">Grabs tweets from the database (<span class="nickname">loadtweets</span>)</div>
-    <div class="method-notes">Pulls tweets from the database and loads it into the clients page</div>
-
-
-
-
-
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      
-      Object
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>""</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Successfully loaded tweets
-        <a href="#Object">Object</a>
-    <h4 class="field-label">400</h4>
-    Error - Unable to load tweets
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -612,8 +746,8 @@ font-style: italic;
     <h4 class="field-label">200</h4>
     User logged in
         <a href="#"></a>
-    <h4 class="field-label">400</h4>
-    Invalid username or password
+    <h4 class="field-label">401</h4>
+    Your username or password doesn't exist or it was invalid
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -650,13 +784,10 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">201</h4>
-    You have successfully registered
+    Created iser
         <a href="#"></a>
     <h4 class="field-label">400</h4>
-    Error - Invalid input
-        <a href="#"></a>
-    <h4 class="field-label">409</h4>
-    The user already exists
+    Invalid data
         <a href="#"></a>
   </div> <!-- method -->
   <hr/>
@@ -666,11 +797,22 @@ font-style: italic;
 
   <h3>Table of Contents</h3>
   <ol>
+    <li><a href="#Admin"><code>Admin</code> - </a></li>
     <li><a href="#Comment"><code>Comment</code> - </a></li>
-    <li><a href="#Tweet"><code>Tweet</code> - </a></li>
+    <li><a href="#Quack"><code>Quack</code> - </a></li>
     <li><a href="#User"><code>User</code> - </a></li>
   </ol>
 
+  <div class="model">
+    <h3><a name="Admin"><code>Admin</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: admin</span></div>
+<div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+          <div class="param-desc"><span class="param-type">example: password123</span></div>
+    </div>  <!-- field-items -->
+  </div>
   <div class="model">
     <h3><a name="Comment"><code>Comment</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
@@ -684,10 +826,10 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="Tweet"><code>Tweet</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="Quack"><code>Quack</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">TweetID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+      <div class="param">QuackID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 1</span></div>
 <div class="param">UserID </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
           <div class="param-desc"><span class="param-type">example: 1</span></div>
