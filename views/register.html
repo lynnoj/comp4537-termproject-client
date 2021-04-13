@@ -1,33 +1,93 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/css/register.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/css/register.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
 </head>
-  <body>
 
-    <h2>Register</h2>
+<body>
 
+  <!-- Navigation Bar -->
+  <div id="nav-bar">
 
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password"><br>
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email"><br><br>
-    <button id="register">Register</button>
-    <button id="login">Login</button>
-    <script src="/js/register.js"></script>
-    <div id ="errorDiv">
+    <div id="nav-bar-left">
+
+      <div>
+        <a href="main.html"><img src="/images/logo.jpg" alt="Icon"></a>
+      </div>
+
+      <div>
+        <p>Quacker</p>
+      </div>
 
     </div>
 
+    <div id="courses">
 
-  </body>
+      <ul>
+        <li><a href="/4537/termproject/API/V1/main">HOME</a></li>
+        <li><a href="">Blank</a></li>
+        <li id="current-link">Register</li>
+        <li><a href="/4537/termproject/API/V1/login">Login</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+
+  <!-- Register -->
+  <div class="register-wrapper">
+    <div class="register-container">
+
+      <div>
+        <h2>Register</h2>
+      </div>
+
+      <div>
+        <label for="fname">First name:</label><br>
+      </div>
+      <div>
+        <input type="text" id="fname" name="fname"><br>
+      </div>
+      <div>
+        <label for="lname">Last name:</label><br>
+      </div>
+      <div>
+        <input type="text" id="lname" name="lname"><br>
+      </div>
+      <div>
+        <label for="username">Username:</label><br>
+      </div>
+      <div>
+        <input type="text" id="username" name="username"><br>
+      </div>
+      <div>
+        <label for="password">Password:</label><br>
+      </div>
+      <div>
+        <input type="password" id="password" name="password"><br>
+      </div>
+      <div>
+        <label for="email">Email:</label><br>
+      </div>
+      <div>
+        <input type="email" id="email" name="email"><br><br>
+      </div>
+      <div class="button-container">
+        <button id="register">Register</button>
+        <button id="login">Login</button>
+      </div>
+      <div id="errorDiv">
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/register.js"></script>
+</body>
+
 </html>

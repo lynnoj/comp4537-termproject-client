@@ -19,7 +19,13 @@ function init()
         if (this.readyState == 4 && this.status == 200)
         {
             commentData = JSON.parse(xhttp.responseText);
+            console.log(commentData);
             loadComments();
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }
@@ -104,7 +110,13 @@ function updateQuack(id)
             console.log(xhr.responseText);
             localStorage.setItem("quack", jsonString);
             cancelQuackEdit();
+            window.location.replace("/4537/termproject/API/V1/quack");
         }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhr.responseText);
+        } 
     }
 }
 
@@ -121,7 +133,7 @@ function loadComments()
     
     for (let i = 0; i < commentData.length; ++i)
     {
-        let dbID = commentData[i].CommentID;
+        let dbID = commentData[i].commentid;
         let div = document.createElement("div");
         let user = commentData[i].username;
         let comment = document.createElement("p");
@@ -135,7 +147,7 @@ function loadComments()
         deleteBtn.setAttribute("id", "deleteComment" + dbID);
         deleteBtn.setAttribute("onclick", "deleteComment(this.id)");
 
-        comment.textContent = commentData[i].Comment;
+        comment.textContent = commentData[i].comment;
         editBtn.textContent = "edit";
         deleteBtn.textContent = "delete";
 
@@ -165,6 +177,12 @@ function createNewComment()
         {
             console.log(xhttp.responseText);
             comment.value = "";
+            window.location.replace("/4537/termproject/API/V1/quack");
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }
@@ -209,7 +227,9 @@ function updateComment(id)
     let length = "updateComment".length;
     let dbID = parseID(length, id);
     let updatedComment = document.getElementById("editCommentArea" + dbID).value;
+    console.log(updatedComment);
     let jsonString = JSON.stringify({"commentid": parseInt(dbID), "username": username, "comment": updatedComment});
+    console.log(jsonString);
     let xhttp = new XMLHttpRequest();
 
     xhttp.open("PUT", "https://comp4537-termproject-api.herokuapp.com/API/V1/editcomment", true);
@@ -223,6 +243,12 @@ function updateComment(id)
             console.log(xhttp.responseText);
             let cancelEditID = "cancelEdit" + dbID;
             cancelEdit(cancelEditID);
+            window.location.replace("/4537/termproject/API/V1/quack");
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }
@@ -255,6 +281,11 @@ function deleteComment(id)
         {
             console.log(xhttp.responseText);
             commentDiv.remove();
+        }
+
+        if (this.readyState == 4 && this.status == 400)
+        {
+            console.log(xhttp.responseText);
         }
     }
 }

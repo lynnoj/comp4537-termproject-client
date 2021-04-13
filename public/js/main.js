@@ -27,7 +27,6 @@ function loadQuacks()
     console.log("inside loadQuacks()");
     for (let i = quackData.length - 1; i >= 0; --i)
     {
-        // let dbID = (i * 10) + 4;
         loadQuacksHelper(i);
     }
 }
@@ -90,6 +89,7 @@ function createQuack()
 {
     let xhr = new XMLHttpRequest();
     let content = document.getElementById("create-quack-content").value;
+    console.log(content);
     let jsonString = JSON.stringify({"username": username, "content": content});
 
     xhr.open("POST", "https://comp4537-termproject-api.herokuapp.com/API/V1/createquack", true);
@@ -101,12 +101,12 @@ function createQuack()
         if (this.readyState == 4 && this.status == 201)
         {
             console.log(xhr.responseText);
-            location.href = "/4537/termproject/API/V1/main";
+            window.location.replace("/4537/termproject/API/V1/main");
         }
 
         if (this.readyState == 4 && this.status == 400)
         {
-            location.href = "/4537/termproject/API/V1/main";
+            window.location.replace("/4537/termproject/API/V1/main");
         }
     }
 }
@@ -167,7 +167,7 @@ function updateQuack(id)
             console.log(xhr.responseText);
             let cancelEditID = "cancelEdit" + dbID;
             cancelEdit(cancelEditID);
-            location.href("/4537/termproject/API/V1/main");
+            window.location.replace("/4537/termproject/API/V1/main");
         }
     }
 }
@@ -200,6 +200,7 @@ function deleteQuack(id)
         {
             console.log(xhr.responseText);
             quackDiv.remove();
+            window.location.replace("/4537/termproject/API/V1/main");
         }
     }
 }
@@ -209,7 +210,18 @@ function viewQuack(id)
 {
     let length = "loadComment".length;
     let dbID = parseInt(parseID(length, id));
-    let quack = JSON.stringify(quackData[(dbID - 4) / 10]);
+    let count = -1;
+    
+    for (let i = 0; i < quackData.length; ++i)
+    {
+        if (quackData[i].QuackID == dbID)
+        {
+            count = i;
+            break;
+        }
+    }
+
+    let quack = JSON.stringify(quackData[count]);
 
     console.log("dbID: " + dbID + "\nquack: " + quack);
     localStorage.setItem("quack", quack);
@@ -231,7 +243,7 @@ function getUsername()
         if (this.readyState == 4 && this.status == 200)
         {
             console.log(xhttp.response);
-            return xhttp.response;
+            username = xhttp.response;
         }
     }
 }
