@@ -17,8 +17,41 @@ function init()
             console.log(JSON.parse(xhr.responseText));
             quackData = JSON.parse(xhr.responseText);
             loadQuacks();
+            logOut();
         }
     }
+}
+
+function logOut(){
+    document.getElementById('change-btn').innerHTML ="";
+    let div = document.getElementById('login-btn');
+    div.innerHTML = "<a id='logout-link' href ='#'>Logout</a>";
+    let logout = document.getElementById("logout-link");
+    if (typeof window.addEventListener != "undefined") {
+        logout.addEventListener("click",logoutToServer,false);
+    } else {
+        logout.attachEvent("onclick",logoutToServer);
+    }
+}
+
+function logoutToServer(){
+    let token= localStorage.getItem('accessToken')
+    localStorage.setItem('accessToken', null)
+    let logoutJson = {
+        token:token,
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', 'https://comp4537-termproject-api.herokuapp.com/API/V1/logout',true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    // xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("accessToken"));
+    xhr.send(JSON.stringify(logoutJson));
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 204) {
+            window.location.replace('/4537/termproject/API/V1/login')
+            console.log(xhr.responseText)
+            
+        }
+    }; 
 }
 
 // Populates the page with tweets and the user's name
