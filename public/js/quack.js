@@ -33,15 +33,19 @@ function init()
 function loadQuack()
 {
     let dbID = localStorage.getItem("id");
-    let quack = localStorage.getItem("quack");
+    let quack = JSON.parse(localStorage.getItem("quack"));
     let parent = document.getElementById("quack-section");
-    let user = document.createElement("p");
+    let container = document.createElement("div");
+    let container2 = document.createElement("div");
+    let user = document.createElement("h3");
     let quackContent = document.createElement("p");
     let editBtn = document.createElement("button");
     let div1 = document.createElement("div");
     let div2 = document.createElement("div");
     let div3 = document.createElement("div");
 
+    container.setAttribute("class", "quack-container-style");
+    container2.setAttribute("class", "quack-container-header");
     editBtn.setAttribute("id", "editQuack")
     editBtn.setAttribute("type", "button");
     editBtn.setAttribute("onclick", "editQuack(" + dbID + ")");
@@ -51,12 +55,15 @@ function loadQuack()
     editBtn.textContent = "edit";
 
     div1.append(user);
-    div2.append(quackContent);
     div3.append(editBtn);
+    div2.append(quackContent);
 
-    parent.append(div1);
-    parent.append(div2);
-    parent.append(div3);
+    container2.append(div1);
+    container2.append(div3);
+
+    container.append(container2);
+    container.append(div2);
+    parent.append(container);
 }
 
 function editQuack()
@@ -70,6 +77,7 @@ function editQuack()
     let cancelBtn = document.createElement("button");
 
     container.setAttribute("id", "editQuackContainer");
+    container.setAttribute("class", "editQuackContainerStyle");
     editQuackArea.setAttribute("id", "editQuackArea");
     editQuackArea.setAttribute("col", "60");
     editQuackArea.setAttribute("rows", "6");
